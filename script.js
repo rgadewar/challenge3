@@ -19,31 +19,33 @@ function generatePassword()
 
   passwordLength = createPasswordOptions();
   console.log("passwordlength: " + passwordLength);
-  upperCase = captureConfirmOutput("Click OK to confirm including Upper Case?");
-  console.log("letterCase: " + upperCase);
-  lowerCase = captureConfirmOutput("Click OK to confirm including Lower Case?");
-  console.log("letterCase: " + lowerCase);
   specialCharChoice = captureConfirmOutput("Click OK to confirm including special characters");
   console.log("Special Char Choice: " + specialCharChoice);
-  numericChoice = captureConfirmOutput("Click OK to confirm including Numbers in password?");
+  numericChoice = captureConfirmOutput("Click OK to confirm including numeric characters ");
   console.log("numericChoice: " + numericChoice);
+  lowerCase = captureConfirmOutput("Click OK to confirm including lowercase characters");
+  console.log("lowerCase: " + lowerCase);
+  upperCase = captureConfirmOutput("Click OK to confirm including uppercase characters");
+  console.log("upperCase: " + upperCase);
   var characters = '';
   var result = ' ';
-  if (upperCase === 'yes')
+   // If user choose specialCharChoice yes, append '~!@#%^&*(){}-_+=?' to characters
+  if(specialCharChoice === 'OK'){
+    characters += '~!@#%^&*(){}-_+=?';
+  }
+  // If user choose numericChoice yes, append '0123456789' to characters
+  if(numericChoice === 'OK'){
+    characters += '0123456789';
+  }
+  // If user choose upperCase yes, append 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' to characters
+  if (upperCase === 'OK')
   {
     characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   }
-  if (lowerCase === 'yes') 
+  // If user choose upperCase yes, append 'abcdefghijklmnopqrstuvwxyz' to characters
+  if (lowerCase === 'OK') 
   {
     characters += 'abcdefghijklmnopqrstuvwxyz';
-  }
-  // If user choose numericChoice yes, append '0123456789' to characters
-  if(numericChoice === 'yes'){
-    characters += '0123456789';
-  }
-  // If user choose specialCharChoice yes, append '~!@#%^&*(){}-_+=?' to characters
-  if(specialCharChoice === 'yes'){
-    characters += '~!@#%^&*(){}-_+=?';
   }
   const charactersLength = characters.length;
   // Randomization to character string
@@ -71,7 +73,7 @@ function captureConfirmOutput(msg)
 {
   let text;
   if (confirm(msg) == true) {
-    text = "yes";
+    text = "OK";
   } else {
     text = "no";
   }
