@@ -18,19 +18,18 @@ function generatePassword(letterCase, length, numericChoice, specialCharChoice)
  {
 
   passwordLength = createPasswordOptions();
-  console.log("passwordlength: " + passwordLength);
-  letterCase = captureConfirmOutput("Do you want Upper Case?");
-  console.log("letterCase: " + letterCase);
-  numericChoice = captureConfirmOutput("Do you want Numbers in password?");
-  console.log("numericChoice: " + numericChoice);
-  specialCharChoice = captureConfirmOutput("Do you want Special char in password?");
-  console.log("Special Char Choice: " + specialCharChoice);
+  console.log("passwordlength" + passwordLength);
+  letterCase = createPasswordCase("Do you want Upper Case?");
+  console.log("letterCase" + letterCase);
+  numericChoice = createNumericChoice("Do you want Numbers in password?");
+  console.log("numericChoice" + numericChoice);
+  specialCharChoice = createSpecialCharChoice("Do you want Special char in password?");
+  console.log("Special Char Choice" + specialCharChoice);
   var characters = '';
   var result = ' ';
   if (letterCase === 'yes')
   {
     characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    // characters += 'abcdefghijklmnopqrstuvwxyz';
   }
   else 
   {
@@ -76,25 +75,3 @@ function captureConfirmOutput(msg)
   }
   return text;
 }
-
-// function createNumericChoice()
-// {
-//   let text;
-//   if (confirm("Do you want Numbers in password?") == true) {
-//     text = "yes";
-//   } else {
-//     text = "no";
-//   }
-//   return text;
-// }
-
-// function createSpecialCharChoice()
-// {
-//   let text;
-//   if (confirm("Do you want Special char in password?") == true) {
-//     text = "yes";
-//   } else {
-//     text = "no";
-//   }
-//   return text;
-// }
