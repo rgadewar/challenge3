@@ -14,25 +14,26 @@ function writePassword()
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function generatePassword(letterCase, length, numericChoice, specialCharChoice)
+function generatePassword()
  {
 
   passwordLength = createPasswordOptions();
   console.log("passwordlength: " + passwordLength);
-  letterCase = captureConfirmOutput("Do you want Upper Case?");
-  console.log("letterCase: " + letterCase);
-  numericChoice = captureConfirmOutput("Do you want Numbers in password?");
-  console.log("numericChoice: " + numericChoice);
-  specialCharChoice = captureConfirmOutput("Do you want Special char in password?");
+  upperCase = captureConfirmOutput("Click OK to confirm including Upper Case?");
+  console.log("letterCase: " + upperCase);
+  lowerCase = captureConfirmOutput("Click OK to confirm including Lower Case?");
+  console.log("letterCase: " + lowerCase);
+  specialCharChoice = captureConfirmOutput("Click OK to confirm including special characters");
   console.log("Special Char Choice: " + specialCharChoice);
+  numericChoice = captureConfirmOutput("Click OK to confirm including Numbers in password?");
+  console.log("numericChoice: " + numericChoice);
   var characters = '';
   var result = ' ';
-  if (letterCase === 'yes')
+  if (upperCase === 'yes')
   {
     characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    // characters += 'abcdefghijklmnopqrstuvwxyz';
   }
-  else 
+  if (lowerCase === 'yes') 
   {
     characters += 'abcdefghijklmnopqrstuvwxyz';
   }
@@ -54,7 +55,7 @@ function generatePassword(letterCase, length, numericChoice, specialCharChoice)
 
 function createPasswordOptions(){
 
-  var passwordLength = prompt('How would you like length of your password to be? ( Must be 8 -128 caharacters');
+  var passwordLength = prompt('How many characters would you like your password to contain (Must be 8 -128 caharacters)');
   check = passwordLength > 8 && passwordLength < 128;
   while(!check)
   {
@@ -76,25 +77,3 @@ function captureConfirmOutput(msg)
   }
   return text;
 }
-
-// function createNumericChoice()
-// {
-//   let text;
-//   if (confirm("Do you want Numbers in password?") == true) {
-//     text = "yes";
-//   } else {
-//     text = "no";
-//   }
-//   return text;
-// }
-
-// function createSpecialCharChoice()
-// {
-//   let text;
-//   if (confirm("Do you want Special char in password?") == true) {
-//     text = "yes";
-//   } else {
-//     text = "no";
-//   }
-//   return text;
-// }
