@@ -54,12 +54,12 @@ function generatePassword(letterCase, length, numericChoice, specialCharChoice)
 function createPasswordOptions(){
 
   var passwordLength = prompt('How would you like length of your password to be? ( Must be 8 -128 caharacters');
-  check = passwordLength > 8 && passwordLength < 128;
+  check = passwordLength >9 && passwordLength < 129;
   while(!check)
   {
     alert("please try again, password length must be 8 -128 characters");
     var passwordLength = prompt("Please re-enetr password length between 8 to 128");
-    check = passwordLength > 8 && passwordLength < 128;
+    check = passwordLength >= 9 && passwordLength < 129;
   }
     return passwordLength;
 }
