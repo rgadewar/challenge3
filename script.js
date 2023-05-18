@@ -8,6 +8,7 @@ function writePassword()
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   // if password value has trithy value only then we show
+
   if(password){
   passwordText.value = password;
   }
@@ -26,29 +27,31 @@ function generatePassword()
     console.log("Special Char Choice: " + specialCharChoice);
     numericChoice = confirm("Click OK to confirm including numeric characters ");
     console.log("numericChoice: " + numericChoice);
-    lowerCaseChoice = confirm("Click OK to confirm including lower characters ");
-    console.log("numericChoice: " + numericChoice);
     upperCaseChoice = confirm("Click OK to confirm including upper characters ");
-    console.log("numericChoice: " + numericChoice);
-    if (!specialCharChoice && !numericChoice && !lowerCaseChoice && !upperCaseChoice){
-      alert("Please select at least one character type");
-      return '';
-    }
+    console.log("upperCaseChoice: " + upperCaseChoice);
+    lowerCaseChoice = confirm("Click OK to confirm including lower characters ");
+    console.log("lowerCaseChoice: " + lowerCaseChoice);
     
-    // var letterCase = prompt("Please enter case for password (ex. lower, upper, both):", "enter case");
-    // // Make sure to convert all choices to lowercase for comparision oLowerCase() is used only if user eneter some case
-    // if(letterCase !== null)
-    // {
-    // letterCase = letterCase.toLowerCase();
-    // }
-    // var check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both"&& letterCase !== null;
-    // while(check ||letterCase === null)
-    // {
-    //   alert("please enter a valid case");
-    //   var letterCase = prompt("Please enter case for apssword (ex. lower, upper, both):", "enter case");
-    //   check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null;
-    // } 
-    // console.log("Case: " + letterCase);
+    // Show this prompt only if no character type is selected
+    if (!specialCharChoice && !numericChoice && !upperCaseChoice && !lowerCaseChoice)
+    {
+    var letterCase = prompt("Please enter case for password (ex. lower, upper, both, numeric, special):", "enter case");
+    // Make sure to convert all choices to lowercase for comparision oLowerCase() is used only if user eneter some case
+    if(letterCase !== null)
+    {
+    letterCase = letterCase.toLowerCase();
+    }
+    var check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null && !specialCharChoice && !numericChoice 
+     && letterCase !=="numeric" && letterCase !=="special" && !upperCaseChoice && !lowerCaseChoice;
+    while(check ||letterCase === null)
+    {
+      alert("please enter a valid case");
+      var letterCase = prompt("Please enter case for apssword (ex. lower, upper, both, numeric, special):", "enter case");
+      check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null && !specialCharChoice && !numericChoice
+      && letterCase !=="numeric" && letterCase !=="special" && !upperCaseChoice && !lowerCaseChoice;
+    } 
+    console.log("Case: " + letterCase);
+  }
   }
   // creating password string for randomization
   var characters = '';
@@ -63,22 +66,25 @@ function generatePassword()
    if(passwordLength !== undefined)
     {
     // If user choose specialCharChoice yes, concat '~!@#%^&*(){}-_+=?' to characters
-    if(specialCharChoice){
+    if(specialCharChoice || letterCase === 'special'){
       characters += specialChars;
     }
     //If user choose numericChoice yes, concat '0123456789' to characters
-    if(numericChoice){
+    if(numericChoice || letterCase === 'numeric'){
       characters += numericChars;
     }
-    if (lowerCaseChoice)
+    if(letterCase === 'lower' || lowerCaseChoice )
     {
       characters += lowerCaseChars;
     }
-    if (upperCaseChoice)
+    if (letterCase === 'upper' || upperCaseChoice)
     {
       characters += upperCaseChars;
     }
-}
+    if (letterCase === 'both')
+      characters += bothCase;
+    }
+
   const charactersLength = characters.length;
   // Randomization to character string
   for ( let i = 0; i < passwordLength; i++ ) {
