@@ -39,6 +39,7 @@ function generatePassword()
     // Make sure to convert all choices to lowercase for comparision oLowerCase() is used only if user eneter some case
     if(letterCase !== null)
     {
+    letterCase = letterCase.trim();
     letterCase = letterCase.toLowerCase();
     }
     var check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null && !specialCharChoice && !numericChoice 
@@ -47,8 +48,10 @@ function generatePassword()
     {
       alert("please enter a valid case");
       var letterCase = prompt("Please enter case for apssword (ex. lower, upper, both, numeric, special):", "enter case");
+      letterCase = letterCase.trim();
       if(letterCase !== null)
       {
+      letterCase = letterCase.trim();
       letterCase = letterCase.toLowerCase();
       }
       check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null && !specialCharChoice && !numericChoice
