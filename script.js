@@ -47,6 +47,10 @@ function generatePassword()
     {
       alert("please enter a valid case");
       var letterCase = prompt("Please enter case for apssword (ex. lower, upper, both, numeric, special):", "enter case");
+      if(letterCase !== null)
+      {
+      letterCase = letterCase.toLowerCase();
+      }
       check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null && !specialCharChoice && !numericChoice
       && letterCase !=="numeric" && letterCase !=="special" && !upperCaseChoice && !lowerCaseChoice;
     } 
