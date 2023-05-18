@@ -26,22 +26,29 @@ function generatePassword()
     console.log("Special Char Choice: " + specialCharChoice);
     numericChoice = confirm("Click OK to confirm including numeric characters ");
     console.log("numericChoice: " + numericChoice);
-    
-    var letterCase = prompt("Please enter case for password (ex. lower, upper, both, special, numeric):", "enter case");
-    // Make sure to convert all choices to lowercase for comparision oLowerCase() is used only if user eneter some case
-    if(letterCase !== null)
-    {
-    letterCase = letterCase.toLowerCase();
+    lowerCaseChoice = confirm("Click OK to confirm including lower characters ");
+    console.log("numericChoice: " + numericChoice);
+    upperCaseChoice = confirm("Click OK to confirm including upper characters ");
+    console.log("numericChoice: " + numericChoice);
+    if (!specialCharChoice && !numericChoice && !lowerCaseChoice && !upperCaseChoice){
+      alert("Please select at least one character type");
+      return '';
     }
-
-    var check = (letterCase === "lower" || letterCase === "upper" || letterCase ==="both" || specialCharChoice || numericChoice || letterCase ==='special'|| letterCase ==="numeric" || letterCase !== null);
-    while(!check)
-    {
-      alert("please enter a valid case");
-      var letterCase = prompt("Please enter case for password (ex. lower, upper, both, special, numeric):", "enter case");
-      check = (letterCase === "lower" || letterCase === "upper" || letterCase ==="both" || specialCharChoice || numericChoice || letterCase ==="special" || letterCase ==="numeric" || letterCase !== null);
-    } 
-    console.log("Case: " + letterCase);
+    
+    // var letterCase = prompt("Please enter case for password (ex. lower, upper, both):", "enter case");
+    // // Make sure to convert all choices to lowercase for comparision oLowerCase() is used only if user eneter some case
+    // if(letterCase !== null)
+    // {
+    // letterCase = letterCase.toLowerCase();
+    // }
+    // var check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both"&& letterCase !== null;
+    // while(check ||letterCase === null)
+    // {
+    //   alert("please enter a valid case");
+    //   var letterCase = prompt("Please enter case for apssword (ex. lower, upper, both):", "enter case");
+    //   check = letterCase !== "lower" && letterCase !== "upper" && letterCase !=="both" && letterCase !== null;
+    // } 
+    // console.log("Case: " + letterCase);
   }
   // creating password string for randomization
   var characters = '';
@@ -56,23 +63,20 @@ function generatePassword()
    if(passwordLength !== undefined)
     {
     // If user choose specialCharChoice yes, concat '~!@#%^&*(){}-_+=?' to characters
-    if(specialCharChoice || letterCase === 'special'){
+    if(specialCharChoice){
       characters += specialChars;
     }
     //If user choose numericChoice yes, concat '0123456789' to characters
-    if(numericChoice || letterCase === 'numeric'){
+    if(numericChoice){
       characters += numericChars;
     }
-    if (letterCase === 'lower')
+    if (lowerCaseChoice)
     {
       characters += lowerCaseChars;
     }
-    if (letterCase === 'upper')
+    if (upperCaseChoice)
     {
       characters += upperCaseChars;
-    }
-    if (letterCase === 'both'){
-      characters += bothCase;
     }
 }
   const charactersLength = characters.length;
@@ -98,7 +102,4 @@ function createPasswordOptions(){
   }
     return passwordLength;
 }
-
-
-
 
