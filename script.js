@@ -104,7 +104,10 @@ function createPasswordOptions(){
 
   var passwordLength = prompt('How many characters would you like your password to contain (Must be 8 -128 caharacters) and must be valid number');
   // check = passwordLength >= 8 && passwordLength <= 128 && !isNaN(passwordLength);
-  if (!passwordLength) return;
+  if (!passwordLength) {
+    alert("Please enter valid length");
+    return;
+  }
   check = passwordLength >= 8 && passwordLength <= 128;
 
   while(!check)
